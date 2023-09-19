@@ -91,39 +91,63 @@ function Article() {
   return (
     <>
       <Navbar />
-      <div className="container mx-auto py-6">
-        {newsArticles.map((article) => (
-          <div key={article.id} className="mb-8">
-            <div className="flex flex-wrap justify-center items-center">
-              {/* Left Column - Image */}
-              <div className="w-full md:w-1/5 p-2 ">
-                <img
-                  src={article.image}
-                  alt="Article Image"
-                  className="border border-lightBlue-200 max-w-full h-auto mx-auto transition-transform hover:scale-105"
-                  style={{ maxWidth: "100%" }}
-                />
-              </div>
+      <div className="relative">
+        {/* Header Banner */}
+        <div
+          className="w-full h-96 relative"
+          style={{
+            backgroundImage: `linear-gradient(to right, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.5), transparent, transparent, transparent)`,
+            backgroundColor: `#005289`,
+            backgroundSize: "200% 100%",
+            animation: "gradientAnimation 5s linear infinite",
+          }}
+        >
+          <div className="text-white text-4xl font-bold absolute top-40 left-20 ">
+            News
+          </div>
+        </div>
 
-              {/* Right Column - Article Content */}
-              <div className="w-full md:w-1/2 p-4">
-                <h1 className="text-2xl font-bold text-blue mb-2">
-                  {article.title}
-                </h1>
-                <p className="text-blue mb-2">{article.date}</p>
-                <div className="mt-2 text-justify">
-                  <p>{article.content}</p>
+        {/* News Articles */}
+        <div className="container mx-auto py-6 mt-4">
+          {newsArticles.map((article) => (
+            <div key={article.id} className="mb-8">
+              <div className="flex flex-wrap justify-center items-center">
+                {/* Left Column - Image */}
+                <div className="w-full md:w-1/5 p-2 relative">
+                  <div
+                    className="relative overflow-hidden"
+                    style={{
+                      paddingBottom: "56.25%", // 16:9 aspect ratio (9 / 16 * 100%)
+                    }}
+                  >
+                    <img
+                      src={article.image}
+                      alt="Article Image"
+                      className="absolute top-0 left-0 w-full h-full object-cover transition-transform hover:scale-105"
+                    />
+                  </div>
                 </div>
-                <a
-                  href={`/news-article/${article.id}`} // Use the appropriate route
-                  className="btn btn-primary mt-3"
-                >
-                  Read More
-                </a>
+
+                {/* Right Column - Article Content */}
+                <div className="w-full md:w-1/2 p-4">
+                  <h1 className="text-2xl font-bold text-blue mb-2">
+                    {article.title}
+                  </h1>
+                  <p className="text-blue mb-2">{article.date}</p>
+                  <div className="mt-2 text-justify">
+                    <p>{article.content}</p>
+                  </div>
+                  <a
+                    href={`/news-article/${article.id}`} // Use the appropriate route
+                    className="btn btn-primary mt-3"
+                  >
+                    Read More
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </>
   );
