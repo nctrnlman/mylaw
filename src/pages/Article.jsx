@@ -138,7 +138,7 @@ function Article() {
                     <p>{article.content}</p>
                   </div>
                   <a
-                    href={`/news-article/${article.id}`} // Use the appropriate route
+                    href={`/article/${article.id}`} // Use the appropriate route
                     className="btn btn-primary mt-3"
                   >
                     Read More
